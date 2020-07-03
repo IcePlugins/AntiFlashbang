@@ -54,6 +54,8 @@ namespace AntiFlashbang
         
         protected override void Unload()
         {
+            playersToIgnore.Clear();
+            playersToIgnore = null;
             Instance = null;
         }
     }

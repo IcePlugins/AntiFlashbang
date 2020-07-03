@@ -7,8 +7,6 @@ using Rocket.Core.Logging;
 //Much credits to defcon or kraken or zoomy of whoever
 namespace AntiFlashbang
 {
-    
-    
     public class OffsetBackup
     {
         #region Variables
@@ -145,9 +143,11 @@ namespace AntiFlashbang
 
             return result;
         }
-        
-        public bool RevertOverride(OffsetBackup backup)
+
+        public bool Revert()
         {
+            if (!Detoured) return false;
+            OffsetBackup backup = OffsetBackup;
             try
             {
                 unsafe
@@ -176,15 +176,6 @@ namespace AntiFlashbang
             {
                 return false;
             }
-        }
-
-        public void Revert()
-        {
-            if (!Detoured) return;
-            bool result = RevertOverride(OffsetBackup);
-
-            if (result)
-                Detoured = false;
         }
 
         public object CallOriginal(object[] args, object instance = null)
