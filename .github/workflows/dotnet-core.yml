@@ -28,3 +28,19 @@ jobs:
         name: Release
         draft: false
         prerelease: false
+    - name: Install zip
+      if: github.event_name == 'release'
+      run: sudo apt-get install zip
+    - name: Zip net461 artifacts
+      if: github.event_name == 'release'
+      run: "cd AntiFlashbang/bin/Release/net46 && zip -qq -r ./release.zip *"      
+    - name: Upload net461 release asset
+      if: github.event_name == 'release'
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: AntiFlashbang/bin/Release/net46/release.zip
+        asset_name: release-net46.zip
+        asset_content_type: application/zip
