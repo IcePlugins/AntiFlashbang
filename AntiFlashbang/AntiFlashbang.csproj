@@ -48,7 +48,7 @@
         <Reference Include="Rocket.Core, Version=2.4.8.0, Culture=neutral, PublicKeyToken=null">
           <HintPath>lib\Rocket.Core.dll</HintPath>
         </Reference>
-        <Reference Include="Rocket.Unturned, Version=4.9.3.2, Culture=neutral, PublicKeyToken=null">
+        <Reference Include="Rocket.Unturned, Version=4.9.3.0, Culture=neutral, PublicKeyToken=null">
           <HintPath>lib\Rocket.Unturned.dll</HintPath>
         </Reference>
         <Reference Include="System" />
