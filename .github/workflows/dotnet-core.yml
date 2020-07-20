@@ -19,3 +19,12 @@ jobs:
       run: dotnet restore
     - name: Build
       run: msbuild AntiFlashbang.sln -p:Configuration=Release
+    - name: Create release
+      id: create_release
+      uses: sondreb/action-release@master
+      with:
+        token: shutup
+        tag: releasemain
+        name: Release
+        draft: false
+        prerelease: false
