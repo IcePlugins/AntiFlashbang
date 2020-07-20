@@ -23,7 +23,7 @@ jobs:
       id: create_release
       uses: sondreb/action-release@master
       with:
-        token: shutup
+        token: ${{ secrets.GITHUB_TOKEN }}
         tag: releasemain
         name: Release
         draft: false
