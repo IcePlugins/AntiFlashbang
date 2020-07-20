@@ -29,8 +29,8 @@ jobs:
         draft: false
         prerelease: false
     - name: Zip net461 artifacts
-      run: "cd bin/Release/net46 && tar.exe -x -f release.zip *"      
-    - name: Upload net461 release asset
+      run: "cd bin/Release/ && tar.exe -x -f release.zip *"      
+    - name: Upload net46 release asset
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ github.token }}
