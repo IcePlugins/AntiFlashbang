@@ -18,4 +18,4 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: msbuild AntiFlashband.sln -p:Configuration=Release
+      run: msbuild AntiFlashbang.sln -p:Configuration=Release
