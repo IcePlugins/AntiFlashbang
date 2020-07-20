@@ -28,14 +28,9 @@ jobs:
         name: Release
         draft: false
         prerelease: false
-    - name: Install zip
-      if: github.event_name == 'release'
-      run: sudo apt-get install zip
     - name: Zip net461 artifacts
-      if: github.event_name == 'release'
-      run: "cd AntiFlashbang/bin/Release/net46 && zip -qq -r ./release.zip *"      
+      run: "cd AntiFlashbang/bin/Release/net46 && tar.exe -x -f release.zip *"      
     - name: Upload net461 release asset
-      if: github.event_name == 'release'
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ github.token }}
