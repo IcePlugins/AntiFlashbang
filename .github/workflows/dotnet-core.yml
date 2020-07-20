@@ -28,8 +28,8 @@ jobs:
         name: Release
         draft: false
         prerelease: false
-    - name: Zip net461 artifacts
-      run: "cd bin/Release/ && tar.exe -x -f release.zip *"      
+    - name: Zip net46 artifacts
+      run: "cd AntiFlashband/bin/Release/ && tar.exe -x -f release.zip *"      
     - name: Upload net46 release asset
       uses: actions/upload-release-asset@v1
       env:
