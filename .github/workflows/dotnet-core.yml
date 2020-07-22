@@ -1,0 +1,41 @@
+name: shut up GITHUVB
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: msbuild AntiFlashbang.sln -p:Configuration=Release
+    - name: Create release
+      id: create_release
+      uses: sondreb/action-release@master
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: releasemain
+        name: Release
+        draft: false
+        prerelease: false
+    - name: Zip net46 artifacts
+      run: "cd AntiFlashbang/bin/ && tar.exe czf release.zip Release"      
+    - name: Upload net46 release asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: AntiFlashbang/bin/release.zip
+        asset_name: release.zip
+        asset_content_type: application/zip
