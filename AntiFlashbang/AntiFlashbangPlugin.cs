@@ -14,6 +14,7 @@ namespace AntiFlashbang
 
         //I can't wait for open mod
         public static AntiFlashbangPlugin Instance;
+        
         private bool _overrided;
 
         public List<CSteamID> playersToIgnore;
@@ -22,6 +23,7 @@ namespace AntiFlashbang
         protected override void Load()
         {
             Instance = this;
+            playersToIgnore = new List<CSteamID>();
             
             if (_overrided)
                 return;
@@ -35,7 +37,6 @@ namespace AntiFlashbang
                 Logger.LogError("Could not override send method");
             
             _overrided = true;
-            playersToIgnore = new List<CSteamID>();
         }
         
         private void OnTriggerSend(SteamPlayer player, string s, ESteamCall mode, ESteamPacket type, object[] arguments)
